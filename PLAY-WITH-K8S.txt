@@ -1,0 +1,37 @@
+	CONFIGURING KUBERNETES CLUSTER WITH MASTER AND WORKER NODE ON PLAY-WITH-K8s PALTFORM STEPS
+
+--CONFIGURE MASTER NODE
+
+Step 1:
+	Add new instance
+
+Step 2: 
+	#run commnad
+	
+	kubeadm init --apiserver-advertise-address $(hostname -i)
+
+Step 3:
+	#run command for CONFIGURE NETWORK AND MAKE CONNECTION WITH NODES AND PODS
+	
+	kubectl apply -n kube-system -f \
+	   "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+	
+	#after this step you will get a token or join key. keep it safe
+	
+	now configure WORKER NODE
+
+--CONFIGURE WORKER NODE
+	
+Step 1: 
+	Add new instance
+
+Step 2:
+	Run the join command which you got in MASTER NODE CONFIGURATION 
+
+-------------------------------------
+
+
+Now You Can verify it by typing 
+	
+	# kubectl get nodes command
+	
